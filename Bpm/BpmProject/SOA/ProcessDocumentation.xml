@@ -6,8 +6,11 @@
          <topicDocumentation name="Process"/>
          <topicDocumentation name="ACT38809772294664">
             <labels>
-               <label locale="en">UserTask</label>
+               <label locale="en">CargaTarea</label>
             </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
          </topicDocumentation>
          <topicDocumentation name="EVT38809772294560">
             <labels>
@@ -19,8 +22,17 @@
                <label locale="en">End</label>
             </labels>
          </topicDocumentation>
+         <topicDocumentation name="ACT38809787463063">
+            <labels>
+               <label locale="en">Revision</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
          <topicDocumentation name="sf38809772294640"/>
          <topicDocumentation name="sf38809772294652"/>
+         <topicDocumentation name="sf38809795125945"/>
       </topicDocumentations>
    </component>
 </processDocumentation>
