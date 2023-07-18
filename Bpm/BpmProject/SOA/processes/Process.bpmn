@@ -34,14 +34,26 @@
             </bpmnext:OracleExtensions>
         </bpmn:extensionElements>
         <bpmn:laneSet>
-            <bpmn:lane name="Role" id="lane1">
+            <bpmn:lane name="Desarrollador" id="lane1">
                 <bpmn:extensionElements>
                     <bpmnext:OracleExtensions>
                         <bpmnext:GraphicsAttributes backgroundColor="-1761607681">
                             <bpmnext:Position x="0" y="0"/>
+                            <bpmnext:Size width="239" height="0"/>
+                        </bpmnext:GraphicsAttributes>
+                        <bpmnext:LaneAttributes roleId="Desarrollador"/>
+                        <bpmnext:FeatureSet/>
+                    </bpmnext:OracleExtensions>
+                </bpmn:extensionElements>
+            </bpmn:lane>
+            <bpmn:lane name="Administrador" id="lane0">
+                <bpmn:extensionElements>
+                    <bpmnext:OracleExtensions>
+                        <bpmnext:GraphicsAttributes backgroundColor="-1761607681">
+                            <bpmnext:Position x="239" y="0"/>
                             <bpmnext:Size width="200" height="0"/>
                         </bpmnext:GraphicsAttributes>
-                        <bpmnext:LaneAttributes roleId="Role"/>
+                        <bpmnext:LaneAttributes roleId="Administrador"/>
                         <bpmnext:FeatureSet/>
                     </bpmnext:OracleExtensions>
                 </bpmn:extensionElements>
@@ -51,7 +63,7 @@
             <bpmn:extensionElements>
                 <bpmnext:OracleExtensions>
                     <bpmnext:GraphicsAttributes>
-                        <bpmnext:Position x="387" y="100"/>
+                        <bpmnext:Position x="292" y="100"/>
                     </bpmnext:GraphicsAttributes>
                     <bpmnext:FeatureSet>
                         <bpmnext:BooleanFeature value="false" name="hasCheckpoint"/>
@@ -67,6 +79,7 @@
                         <bpmnext:StringFeature value="USE_PROCESS_PERMISSION" name="sealType"/>
                         <bpmnext:StringFeature value="REUSE_PAYLOAD" name="reinitiatorPolicy"/>
                         <bpmnext:StringFeature value="INITIATOR" name="humanTaskType"/>
+                        <bpmnext:StringFeature value="" name="reinitiateSource"/>
                     </bpmnext:FeatureSet>
                     <bpmnext:HumanTask>
                         <bpmnext:humanTaskRef refType="namespaced" name="CargaTarea" namespace="http://xmlns.oracle.com/Bpm/BpmProject/CargaTarea" elementType="TYPE" implementationType="humanTask"/>
@@ -213,13 +226,13 @@
                     </bpmn:to>
                 </bpmn:assignment>
             </bpmn:dataOutputAssociation>
-            <bpmn:resourceRole name="Role" id="lane1"/>
+            <bpmn:resourceRole name="Desarrollador" id="lane1"/>
         </bpmn:userTask>
         <bpmn:userTask isForCompensation="false" name="Revision" id="ACT38809787463063">
             <bpmn:extensionElements>
                 <bpmnext:OracleExtensions>
                     <bpmnext:GraphicsAttributes>
-                        <bpmnext:Position x="714" y="101"/>
+                        <bpmnext:Position x="481" y="341"/>
                     </bpmnext:GraphicsAttributes>
                     <bpmnext:FeatureSet>
                         <bpmnext:BooleanFeature value="false" name="hasCheckpoint"/>
@@ -366,7 +379,7 @@
                     </bpmn:to>
                 </bpmn:assignment>
             </bpmn:dataOutputAssociation>
-            <bpmn:resourceRole name="Role" id="lane1"/>
+            <bpmn:resourceRole name="Administrador" id="lane0"/>
         </bpmn:userTask>
         <bpmn:startEvent isInterrupting="false" name="Start" id="EVT38809772294560">
             <bpmn:extensionElements>
@@ -399,7 +412,7 @@
             <bpmn:extensionElements>
                 <bpmnext:OracleExtensions>
                     <bpmnext:GraphicsAttributes>
-                        <bpmnext:Position x="1089" y="103"/>
+                        <bpmnext:Position x="1047" y="340"/>
                     </bpmnext:GraphicsAttributes>
                     <bpmnext:FeatureSet>
                         <bpmnext:BooleanFeature value="false" name="hasCheckpoint"/>
@@ -421,6 +434,32 @@
             </bpmn:extensionElements>
             <bpmn:inputSet/>
         </bpmn:endEvent>
+        <bpmn:exclusiveGateway gatewayDirection="Unspecified" name="Arpobación" id="GTW38811094180128">
+            <bpmn:extensionElements>
+                <bpmnext:OracleExtensions>
+                    <bpmnext:GraphicsAttributes>
+                        <bpmnext:Position x="831" y="340"/>
+                    </bpmnext:GraphicsAttributes>
+                    <bpmnext:FeatureSet>
+                        <bpmnext:BooleanFeature value="false" name="hasCheckpoint"/>
+                        <bpmnext:StringFeature value="[]" name="TagFeature"/>
+                        <bpmnext:StringFeature value="PROCESS_DEFAULT" name="generatesEvents"/>
+                        <bpmnext:StringFeature value="" name="lane"/>
+                        <bpmnext:StringFeature value="Begin Level" name="level"/>
+                        <bpmnext:StringFeature value="USE_PROCESS_PERMISSION" name="sealType"/>
+                    </bpmnext:FeatureSet>
+                    <bpmnext:Localization>
+                        <bpmnext:Label>
+                            <bpmnext:LocalizedContent language="en">Arpobación</bpmnext:LocalizedContent>
+                        </bpmnext:Label>
+                        <bpmnext:Description>
+                            <bpmnext:LocalizedContent language="en"></bpmnext:LocalizedContent>
+                        </bpmnext:Description>
+                    </bpmnext:Localization>
+                    <bpmnext:FlowNodeProperties/>
+                </bpmnext:OracleExtensions>
+            </bpmn:extensionElements>
+        </bpmn:exclusiveGateway>
         <bpmn:sequenceFlow sourceRef="EVT38809772294560" targetRef="ACT38809772294664" name="sf38809772294640" id="sf38809772294640">
             <bpmn:extensionElements>
                 <bpmnext:OracleExtensions>
@@ -445,7 +484,7 @@
                 </bpmnext:OracleExtensions>
             </bpmn:extensionElements>
         </bpmn:sequenceFlow>
-        <bpmn:sequenceFlow sourceRef="ACT38809787463063" targetRef="EVT38809772294645" name="sf38809795125945" id="sf38809795125945">
+        <bpmn:sequenceFlow sourceRef="ACT38809787463063" targetRef="GTW38811094180128" name="sf38809795125945" id="sf38809795125945">
             <bpmn:extensionElements>
                 <bpmnext:OracleExtensions>
                     <bpmnext:SequenceFlowAttributes/>
@@ -456,6 +495,41 @@
                     </bpmnext:FeatureSet>
                 </bpmnext:OracleExtensions>
             </bpmn:extensionElements>
+        </bpmn:sequenceFlow>
+        <bpmn:sequenceFlow sourceRef="GTW38811094180128" targetRef="EVT38809772294645" name="sf38811094917129" id="sf38811094917129">
+            <bpmn:extensionElements>
+                <bpmnext:OracleExtensions>
+                    <bpmnext:SequenceFlowAttributes/>
+                    <bpmnext:FeatureSet>
+                        <bpmnext:BooleanFeature value="false" name="collapseMessage"/>
+                        <bpmnext:StringFeature value="-2147483648,-2147483648" name="curve"/>
+                        <bpmnext:StringFeature value="STRAIGHT" name="routing"/>
+                    </bpmnext:FeatureSet>
+                </bpmnext:OracleExtensions>
+            </bpmn:extensionElements>
+        </bpmn:sequenceFlow>
+        <bpmn:sequenceFlow sourceRef="GTW38811094180128" targetRef="ACT38809772294664" name="sf38811095429436" id="sf38811095429436">
+            <bpmn:extensionElements>
+                <bpmnext:OracleExtensions>
+                    <bpmnext:SequenceFlowAttributes>
+                        <bpmnext:Positions x="795" y="99"/>
+                    </bpmnext:SequenceFlowAttributes>
+                    <bpmnext:FeatureSet>
+                        <bpmnext:BooleanFeature value="false" name="collapseMessage"/>
+                        <bpmnext:StringFeature value="795,99" name="curve"/>
+                        <bpmnext:StringFeature value="ORTHOGONAL" name="routing"/>
+                        <bpmnext:StringFeature value="Tarea Rechazada" name="userName"/>
+                        <bpmnext:IntegerFeature value="0" name="order"/>
+                    </bpmnext:FeatureSet>
+                </bpmnext:OracleExtensions>
+            </bpmn:extensionElements>
+            <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="http://www.w3.org/1999/XPath" xpathns:bpmn="http://www.omg.org/bpmn20" xmlns:xpathns="http://xmlns.oracle.com/bpm/XPathNamespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">(bpmn:getDataObject('outcomeRevision') = 'REJECT')
+                <bpmn:extensionElements>
+                    <bpmnext:OracleExtensions>
+                        <bpmnext:Expression mode="simple"/>
+                    </bpmnext:OracleExtensions>
+                </bpmn:extensionElements>
+            </bpmn:conditionExpression>
         </bpmn:sequenceFlow>
         <bpmn:dataObject name="taskId" id="taskId">
             <bpmn:extensionElements>

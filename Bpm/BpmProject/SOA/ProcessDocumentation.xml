@@ -12,6 +12,14 @@
                <description locale="en"></description>
             </descriptions>
          </topicDocumentation>
+         <topicDocumentation name="ACT38809787463063">
+            <labels>
+               <label locale="en">Revision</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
          <topicDocumentation name="EVT38809772294560">
             <labels>
                <label locale="en">Start</label>
@@ -22,9 +30,9 @@
                <label locale="en">End</label>
             </labels>
          </topicDocumentation>
-         <topicDocumentation name="ACT38809787463063">
+         <topicDocumentation name="GTW38811094180128">
             <labels>
-               <label locale="en">Revision</label>
+               <label locale="en">Arpobación</label>
             </labels>
             <descriptions>
                <description locale="en"></description>
@@ -33,6 +41,15 @@
          <topicDocumentation name="sf38809772294640"/>
          <topicDocumentation name="sf38809772294652"/>
          <topicDocumentation name="sf38809795125945"/>
+         <topicDocumentation name="sf38811094917129"/>
+         <topicDocumentation name="sf38811095429436">
+            <labels>
+               <label locale="en">Tarea Rechazada</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
       </topicDocumentations>
    </component>
 </processDocumentation>

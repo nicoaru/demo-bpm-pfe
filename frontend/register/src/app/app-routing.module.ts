@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CargaTareaFormComponent } from './components/carga-tarea-form/carga-tarea-form.component';
 
 const routes: Routes = [
-  { path: '', component: CargaTareaFormComponent }
+  { path: 'carga', component: CargaTareaFormComponent }
 ];
 
 @NgModule({
