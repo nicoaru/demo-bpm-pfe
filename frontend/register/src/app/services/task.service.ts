@@ -5,14 +5,14 @@ import {
   HttpHeaders,
   HttpParams,
 } from '@angular/common/http';
-import { User } from '../models/User';
+import { Task } from "../models/Task";
 import { catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
-  _userURL: string = 'http://localhost:8080/api/users';
+export class TaskService {
+  _taskURL: string = 'http://localhost:8080/api/tasks';
   _bpmPayloadURL: string = 'http://localhost:8080/api/BPM/payload';
   _bpmAvanzarUrl: string = 'http://localhost:8080/api/BPM/avanzar';
 
@@ -37,21 +37,21 @@ export class UserService {
     }
   }
 
-  addUser(user: User) {
+  addTask(task: Task) {
     return this.http
-      .post<User>(this._userURL + '/register', user, this.getHttpOptions())
+      .post<Task>(this._taskURL, task, this.getHttpOptions())
       .pipe(catchError(this.handlerException));
   }
 
-  getUser(userId: string): any {
+  getTask(taskId: string): any {
     return this.http
-      .get(this._userURL + `/${userId}`, this.getHttpOptions())
+      .get(this._taskURL + `/${taskId}`, this.getHttpOptions())
       .pipe(catchError(this.handlerException));
   }
 
-  updateUser(userId: string, user: User | undefined) {
+  updateTask(taskId: string, task: Task | undefined) {
     return this.http
-      .put(this._userURL + `/${userId}`, user, this.getHttpOptions())
+      .put(this._taskURL + `/${taskId}`, task, this.getHttpOptions())
       .pipe(catchError(this.handlerException));
   }
 

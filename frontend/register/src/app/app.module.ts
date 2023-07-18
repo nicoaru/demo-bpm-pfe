@@ -9,13 +9,11 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import { ProfileComponent } from './components/profile/profile.component';
 import { CargaTareaFormComponent } from './components/carga-tarea-form/carga-tarea-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
     CargaTareaFormComponent
   ],
   imports: [

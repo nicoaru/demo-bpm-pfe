@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../../models/User';
-import { UserService } from '../../services/user.service';
+import { Task } from '../../models/Task';
+import { TaskService } from '../../services/task.service';
 import { toastError, toastSuccess } from '../../../main';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-carga-tarea-form',
@@ -11,64 +11,40 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./carga-tarea-form.component.css']
 })
 export class CargaTareaFormComponent implements OnInit {
-  registerForm!: FormGroup;
-  minChars: number = 2;
-  maxChars: number = 25;
-  user: User | undefined;
+  taskForm!: FormGroup;
+  disabled: boolean = false;
+  task: Task | undefined;
   payload: any;
   bpmContextId: any;
   bpmWorklistTaskId: any;
   bpmWorklistContext: any;
   loading: boolean = false;
 
-  pass: RegExp = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,20})');
-
   constructor(
     formBuilder: FormBuilder,
-    private userService: UserService,
+    private taskService: TaskService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    this.registerForm = formBuilder.group({
-      firstname: [
+    this.taskForm = formBuilder.group({
+      title: [
         '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(this.minChars),
-          Validators.maxLength(this.maxChars),
-        ]),
+        Validators.required
       ],
-      lastname: [
+      description: [
         '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(this.minChars),
-          Validators.maxLength(this.maxChars),
-        ]),
-      ],
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(this.pass),
-        ]),
-      ],
+        Validators.required
+      ]
     });
   }
 
   ngOnInit(): void {
-    // this.router.events.subscribe((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     console.log('Current URL:', event.url); // Output the actual URL
-    //   }
-    // });
 
     this.activatedRoute.queryParamMap.subscribe((params) => {
       this.bpmContextId = params.get('contextId');
       this.bpmWorklistTaskId = params.get('bpmWorklistTaskId');
       this.bpmWorklistContext = params.get('bpmWorklistContext');
-      
+
       console.log('bpmWorklistTaskId:   ', this.bpmWorklistTaskId);
       console.log('bpmWorklistContext:   ', this.bpmWorklistContext);
     });
@@ -76,30 +52,31 @@ export class CargaTareaFormComponent implements OnInit {
     this.getBpmPayload();
   }
 
-  addUser(): void {
-    this.user = new User(
-      this.registerForm.value.firstname,
-      this.registerForm.value.lastname,
-      this.registerForm.value.email,
-      this.registerForm.value.password
+  addTask(): void {
+    this.task = new Task(
+      this.taskForm.value.title,
+      this.taskForm.value.description,
     );
-    this.userService.addUser(this.user)
+    this.taskService.addTask(this.task)
       .subscribe({
         next: (response:any) => {
           if (!response.error) {
 
             if(this.payload) {
-              const updatedPayload = {...this.payload, userId: response.id}
+              const updatedPayload = {...this.payload, taskId: response.id}
               this.avanzarSolicitud(updatedPayload);
             }
             else console.log("No se pudo obtener el payload. No se puede avanzar.");
-            
+
             toastSuccess
             .fire({
               icon: 'success',
-              title: 'Usuario registrado',
+              title: 'Tarea Creada',
             })
-            //.then(() => location.reload());
+              .then(() => {
+                this.taskForm.disable()
+                this.disabled = true
+              })
           }
         },
         error: (error: string) => {
@@ -120,7 +97,7 @@ export class CargaTareaFormComponent implements OnInit {
     )
       return console.log('Faltan datos de BPM para obtener el payload');
 
-    this.userService
+    this.taskService
       .getBpmPayload(this.bpmWorklistTaskId, this.bpmWorklistContext)
       .subscribe({
         next: (response: any) => {
@@ -139,19 +116,19 @@ export class CargaTareaFormComponent implements OnInit {
 
   async updateBpmPayload(updatedPayload:Record<string, string>) {
     console.log("Entró en updateBpmPayload");
-    
-    this.userService.updateBpmPayload(this.bpmWorklistTaskId, this.bpmWorklistContext, updatedPayload)
+
+    this.taskService.updateBpmPayload(this.bpmWorklistTaskId, this.bpmWorklistContext, updatedPayload)
     .subscribe({
       next: (response: any) => {
         if (!response?.error) {
           console.log('updatedPayload: ', response);
         }
-        
+
       },
       error: (error: string) => {
         console.log('Error haciendo update del payload: ', error);
       },
-    });    
+    });
   }
 
 
@@ -159,8 +136,8 @@ export class CargaTareaFormComponent implements OnInit {
     console.log("Entró en avanzarSolicitud");
 
     const body:Record<string, string> = {...updatedPayload, outcome: "SUBMIT"};
-    
-    this.userService.avanzarBpmProcess(this.bpmWorklistTaskId, this.bpmWorklistContext, body)
+
+    this.taskService.avanzarBpmProcess(this.bpmWorklistTaskId, this.bpmWorklistContext, body)
     .subscribe({
       next: (response: any) => {
         if (!response?.error) {
@@ -170,7 +147,7 @@ export class CargaTareaFormComponent implements OnInit {
       error: (error: string) => {
         console.log('Error haciendo avanzar la solicitud: ', error);
       },
-    });    
+    });
   }
 
 }
