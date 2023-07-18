@@ -10,11 +10,13 @@ import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { CargaTareaFormComponent } from './components/carga-tarea-form/carga-tarea-form.component';
+import { RevisionTareaComponent } from './components/revision-tarea/revision-tarea.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CargaTareaFormComponent
+    CargaTareaFormComponent,
+    RevisionTareaComponent
   ],
   imports: [
     BrowserModule,
@@ -29,4 +31,4 @@ import { CargaTareaFormComponent } from './components/carga-tarea-form/carga-tar
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule{ }

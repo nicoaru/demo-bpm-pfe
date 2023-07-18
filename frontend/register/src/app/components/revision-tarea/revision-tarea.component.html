@@ -1,0 +1,18 @@
+<mat-toolbar color="primary" class="mat-h1">
+  Revisar tarea
+</mat-toolbar>
+<form [formGroup]="reviewForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Título</mat-label>
+    <input matInput formControlName="title" id="title"
+           matNativeControl="text" [disabled]="true">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput formControlName="description" id="description" matNativeControl="text" [disabled]="true"></textarea>
+  </mat-form-field>
+  <section class="btn-container">
+    <button mat-button color="primary" class="approve" (click)="approveTask()" *ngIf="!disabled">Aprobar</button>
+    <button mat-button color="warn" class="reject" (click)="rejectTask()" *ngIf="!disabled">Rechazar</button>
+  </section>
+</form>

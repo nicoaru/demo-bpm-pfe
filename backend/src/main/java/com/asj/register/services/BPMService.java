@@ -78,6 +78,8 @@ public class BPMService implements IBPMService {
 
     @Override
     public void avanzarSolicitud(String bpmWorklistTaskId, String bpmWorklistContext, Map<String, String> body) {
+        System.out.println("bpmWorklistContext=" + bpmWorklistContext);
+        System.out.println("bpmWorklistTaskId=" + bpmWorklistTaskId);
         String pfeUrl = getPfeUrlFromBesyReference();
         String urlParams = "?bpmWorklistTaskId=" + bpmWorklistTaskId + "&bpmWorklistContext=" + bpmWorklistContext;
         String completeUrl =  pfeUrl+AVANZAR_PATH+urlParams;
