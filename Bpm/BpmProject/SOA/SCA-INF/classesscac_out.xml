@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>error</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>C:\Users\naruguete\Nico\AcademIT\Pruebas\Demo-BPM-PFE\Bpm\BpmProject\SOA\processes\Process.bpmn</file>
+      <name>C:\Users\naruguete\Nico\AcademIT\Pruebas\Demo-BPM-PFE\Bpm\BpmProject\SOA\processes\Process.bpmn</name>
+      <fix/>
+      <msg>El nodo 'UserTask' no tiene ninguna implantación definida</msg>
+   </Fault>
+</Faults>

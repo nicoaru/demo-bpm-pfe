@@ -10,8 +10,8 @@
          <property name="location" value="./"/>
       </serviceInstance>
    </serviceInstances>
-   <jpsContexts default="Bpm">
-      <jpsContext name="Bpm">
+   <jpsContexts default="Demo-BPM-PFE">
+      <jpsContext name="Demo-BPM-PFE">
          <serviceInstanceRef ref="credstore"/>
       </jpsContext>
    </jpsContexts>
