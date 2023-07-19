@@ -48,4 +48,10 @@ public class TaskService implements ITaskService {
 
         return task.getHours();
     }
+
+    @Override
+    public Long getTaskCount() {
+        return taskRepository.count();
+    }
+
 }

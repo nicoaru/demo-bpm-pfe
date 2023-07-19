@@ -16,4 +16,6 @@ public interface ITaskService {
     TaskResponse updateTask(TaskUpdateRequest taskUpdate, Integer taskId);
 
     Integer getTaskHours(Integer taskId);
+
+    Long getTaskCount();
 }

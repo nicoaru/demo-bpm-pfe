@@ -27,7 +27,6 @@ public class Task {
     @NotBlank
     private String description;
 
-    @NotNull
     private Integer hours;
 
     private boolean validated = false;

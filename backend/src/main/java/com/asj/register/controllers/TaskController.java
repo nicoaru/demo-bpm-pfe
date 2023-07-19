@@ -46,4 +46,9 @@ public class TaskController {
     public ResponseEntity<Integer> getTaskHours(@PathVariable Integer taskId) {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.getTaskHours(taskId));
     }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> getTaskCount() {
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.getTaskCount());
+    }
 }
