@@ -14,4 +14,6 @@ public interface ITaskService {
     TaskResponse validateTask(Integer taskId);
 
     TaskResponse updateTask(TaskUpdateRequest taskUpdate, Integer taskId);
+
+    Integer getTaskHours(Integer taskId);
 }

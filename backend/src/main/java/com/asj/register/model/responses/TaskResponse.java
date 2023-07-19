@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -16,6 +18,7 @@ public class TaskResponse {
     private Integer id;
     private String title;
     private String description;
+    private Integer hours;
     private boolean validated;
 
 
@@ -24,6 +27,7 @@ public class TaskResponse {
                 .id(taskEntity.getId())
                 .title(taskEntity.getTitle())
                 .description(taskEntity.getDescription())
+                .hours(taskEntity.getHours())
                 .validated(taskEntity.isValidated())
                 .build();
     }

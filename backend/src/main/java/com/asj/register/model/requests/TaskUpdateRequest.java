@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
@@ -19,12 +20,15 @@ public class TaskUpdateRequest {
     private String title;
     @NotBlank(message = "Descripción no debe estar vacío")
     private String description;
+    @NotNull(message = "Horas no debe estar vacío")
+    private Integer hours;
     private boolean isValidated;
 
     public static Task toEntity(TaskUpdateRequest taskCreateRequest){
         return Task.builder()
                 .title(taskCreateRequest.getTitle())
                 .description(taskCreateRequest.getDescription())
+                .hours(taskCreateRequest.getHours())
                 .build();
     }
 

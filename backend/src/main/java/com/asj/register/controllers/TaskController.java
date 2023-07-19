@@ -42,4 +42,8 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.updateTask(updateTask, taskId));
     }
 
+    @GetMapping("/{taskId}/hours")
+    public ResponseEntity<Integer> getTaskHours(@PathVariable Integer taskId) {
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.getTaskHours(taskId));
+    }
 }

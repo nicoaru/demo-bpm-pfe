@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
@@ -25,6 +26,9 @@ public class Task {
 
     @NotBlank
     private String description;
+
+    @NotNull
+    private Integer hours;
 
     private boolean validated = false;
 

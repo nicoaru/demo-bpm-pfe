@@ -41,4 +41,11 @@ public class TaskService implements ITaskService {
         task.setTitle(taskUpdate.getTitle());
         return TaskResponse.toResponse(taskRepository.save(task));
     }
+
+    @Override
+    public Integer getTaskHours(Integer taskId) {
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new NotFoundException("Tarea no encontrada"));
+
+        return task.getHours();
+    }
 }
