@@ -1,13 +1,9 @@
 package com.asj.register.controllers;
 
-import com.asj.register.model.entities.Task;
+
 import com.asj.register.model.requests.TaskCreateRequest;
 import com.asj.register.model.requests.TaskUpdateRequest;
-import com.asj.register.model.requests.UserCreateRequest;
-import com.asj.register.model.requests.UserUpdateRequest;
 import com.asj.register.model.responses.TaskResponse;
-import com.asj.register.model.responses.UserResponse;
-import com.asj.register.services.UserService;
 import com.asj.register.services.interfaces.ITaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
