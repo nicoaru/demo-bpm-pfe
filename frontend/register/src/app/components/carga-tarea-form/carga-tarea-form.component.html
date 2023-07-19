@@ -1,27 +1,25 @@
 <mat-toolbar color="primary" class="mat-h1">
     Cargar tarea
 </mat-toolbar>
-<h1 *ngIf="disabled">Esperar Aprobación</h1>
-<form [formGroup]="taskForm">
-  <mat-form-field class="example-full-width">
-    <mat-label>Título</mat-label>
-    <input matInput placeholder="Ej. Crear ABM de usuarios" formControlName="title" id="title"
-            matNativeControl="text">
-    <mat-error *ngIf="taskForm.controls['title'].errors?.['required']">
-      * Este campo debe estar completo
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Descripción</mat-label>
-    <textarea matInput placeholder="Ej. Realizar el alta, baja y modificacion de usuarios en Java" formControlName="description" id="description" matNativeControl="text"></textarea>
-    <mat-error *ngIf="taskForm.controls['description'].errors?.['required']">
-      * Este campo debe estar completo
-    </mat-error>
-  </mat-form-field>
-  <section class="btn-container">
-    <button mat-button color="primary" class="save" type="submit" (click)="addTask()" *ngIf="!disabled">Guardar</button>
-    <button mat-button color="warn" type="reset" class="cancel" *ngIf="!disabled">Cancelar</button>
-  </section>
-</form>
-
-<mat-spinner *ngIf="loading" class="spinner"/>
+  <h1 *ngIf="disabled">Esperar Aprobación</h1>
+  <form [formGroup]="taskForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Título</mat-label>
+      <input matInput placeholder="Ej. Crear ABM de usuarios" formControlName="title" id="title"
+             matNativeControl="text">
+      <mat-error *ngIf="taskForm.controls['title'].errors?.['required']">
+        * Este campo debe estar completo
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput placeholder="Ej. Realizar el alta, baja y modificacion de usuarios en Java" formControlName="description" id="description" matNativeControl="text"></textarea>
+      <mat-error *ngIf="taskForm.controls['description'].errors?.['required']">
+        * Este campo debe estar completo
+      </mat-error>
+    </mat-form-field>
+    <section class="btn-container">
+      <button mat-button color="primary" class="save" type="submit" (click)="addTask()" *ngIf="!disabled">Guardar</button>
+      <button mat-button color="warn" type="reset" class="cancel" *ngIf="!disabled">Cancelar</button>
+    </section>
+  </form>
