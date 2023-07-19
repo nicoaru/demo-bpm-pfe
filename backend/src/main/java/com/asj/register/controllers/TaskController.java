@@ -4,6 +4,7 @@ package com.asj.register.controllers;
 import com.asj.register.model.requests.TaskCreateRequest;
 import com.asj.register.model.requests.TaskUpdateRequest;
 import com.asj.register.model.responses.TaskResponse;
+import com.asj.register.model.responses.TasksCountResponse;
 import com.asj.register.services.interfaces.ITaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -44,7 +45,7 @@ public class TaskController {
     }
 
     @GetMapping("/count")
-    public ResponseEntity<Long> getTaskCount() {
+    public ResponseEntity<TasksCountResponse> getTaskCount() {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.getTaskCount());
     }
 }

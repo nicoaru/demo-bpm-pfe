@@ -4,6 +4,7 @@ import com.asj.register.model.entities.Task;
 import com.asj.register.model.requests.TaskCreateRequest;
 import com.asj.register.model.requests.TaskUpdateRequest;
 import com.asj.register.model.responses.TaskResponse;
+import com.asj.register.model.responses.TasksCountResponse;
 
 public interface ITaskService {
 
@@ -17,5 +18,5 @@ public interface ITaskService {
 
     Integer getTaskHours(Integer taskId);
 
-    Long getTaskCount();
+    TasksCountResponse getTaskCount();
 }

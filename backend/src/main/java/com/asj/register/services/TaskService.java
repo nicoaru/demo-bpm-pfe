@@ -5,6 +5,7 @@ import com.asj.register.model.entities.Task;
 import com.asj.register.model.requests.TaskCreateRequest;
 import com.asj.register.model.requests.TaskUpdateRequest;
 import com.asj.register.model.responses.TaskResponse;
+import com.asj.register.model.responses.TasksCountResponse;
 import com.asj.register.repositories.TaskRepository;
 import com.asj.register.services.interfaces.ITaskService;
 import lombok.RequiredArgsConstructor;
@@ -50,8 +51,8 @@ public class TaskService implements ITaskService {
     }
 
     @Override
-    public Long getTaskCount() {
-        return taskRepository.count();
+    public TasksCountResponse getTaskCount() {
+        return TasksCountResponse.toResponse(taskRepository.count());
     }
 
 }

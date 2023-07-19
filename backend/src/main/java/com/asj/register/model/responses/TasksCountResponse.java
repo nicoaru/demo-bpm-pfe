@@ -10,21 +10,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TaskResponse {
+public class TasksCountResponse {
+
+    private Long tasksCount;
 
 
-    private Integer id;
-    private String title;
-    private String description;
-    private boolean validated;
-
-
-    public static TaskResponse toResponse(Task taskEntity){
-        return TaskResponse.builder()
-                .id(taskEntity.getId())
-                .title(taskEntity.getTitle())
-                .description(taskEntity.getDescription())
-                .validated(taskEntity.isValidated())
+    public static TasksCountResponse toResponse(Long tasksCount){
+        return TasksCountResponse.builder()
+                .tasksCount(tasksCount)
                 .build();
     }
 

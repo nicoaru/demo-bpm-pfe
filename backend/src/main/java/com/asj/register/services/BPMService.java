@@ -25,6 +25,8 @@ public class BPMService implements IBPMService {
 
 
     private String getPfeUrlFromBesyReference() {
+        System.out.println("WorkingDirectory: "+ System.getProperty("user.dir"));
+
         WebServiceRest obpmWS;
         try {
             obpmWS = (WebServiceRest)  new BesyReferences().getExternalResource("PageFlowEngineWS");
