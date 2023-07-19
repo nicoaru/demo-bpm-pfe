@@ -38,8 +38,8 @@ public class BPMService implements IBPMService {
     public Map<String, String> getPayload(String bpmWorklistTaskId, String bpmWorklistContext) {
         String pfeUrl = this.getPfeUrlFromBesyReference();
         String urlParams = "?bpmWorklistTaskId=" + bpmWorklistTaskId + "&bpmWorklistContext=" + bpmWorklistContext;
-        String completeUrl =  pfeUrl+PAYLOAD_PATH+urlParams;
-        System.out.println(completeUrl);
+        String completeUrl =  pfeUrl+"obpm12/solicitud/payload"+urlParams;
+        System.out.println("Get payload: "+completeUrl);
         try {
             Map<String, String> response = new RestTemplate().getForObject(completeUrl, new HashMap<String, String>().getClass() );
             System.out.println("payload response: "+response);
@@ -58,8 +58,8 @@ public class BPMService implements IBPMService {
 
         String pfeUrl = this.getPfeUrlFromBesyReference();
         String urlParams = "?bpmWorklistTaskId=" + bpmWorklistTaskId + "&bpmWorklistContext=" + bpmWorklistContext;
-        String completeUrl =  pfeUrl+PAYLOAD_PATH+urlParams;
-        //System.out.println(completeUrl);
+        String completeUrl =  pfeUrl+"obpm12/solicitud/payload"+urlParams;
+        System.out.println("Update payload: "+completeUrl);
 
 
         try {
@@ -82,13 +82,12 @@ public class BPMService implements IBPMService {
         System.out.println("bpmWorklistTaskId=" + bpmWorklistTaskId);
         String pfeUrl = getPfeUrlFromBesyReference();
         String urlParams = "?bpmWorklistTaskId=" + bpmWorklistTaskId + "&bpmWorklistContext=" + bpmWorklistContext;
-        String completeUrl =  pfeUrl+AVANZAR_PATH+urlParams;
-        System.out.println(completeUrl);
-        System.out.println("body: "+body);
+        String completeUrl =  pfeUrl+"obpm12/solicitud/avanzar"+urlParams;
+        System.out.println("Avanzar solicitud: "+completeUrl);
+        System.out.println("Body: "+body);
         try {
             ResponseEntity<Void> responseAvanzarSolicitud = new RestTemplate().exchange(completeUrl, HttpMethod.POST, new HttpEntity<>(body), Void.class);
             System.out.println(responseAvanzarSolicitud);
-            //if(!responseAvanzarSolicitud.getStatusCode().is2xxSuccessful()) throw new ErrorProcessException("Error haciendo avanzar la solicitud: "+);
         }
         catch(Exception e) {
             System.out.println("CATCH - Error haciendo avanazr la solicitud");
