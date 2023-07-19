@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from '../../models/Task';
 import { TaskService } from '../../services/task.service';
 import { toastError, toastSuccess } from '../../../main';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-carga-tarea-form',
@@ -24,7 +24,7 @@ export class CargaTareaFormComponent implements OnInit {
     formBuilder: FormBuilder,
     private taskService: TaskService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) {
     this.taskForm = formBuilder.group({
       title: [
@@ -39,8 +39,11 @@ export class CargaTareaFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("url: ", window.location.href);
 
     this.activatedRoute.queryParamMap.subscribe((params) => {
+      console.log("paramas: ", params);
+      
       this.bpmContextId = params.get('contextId');
       this.bpmWorklistTaskId = params.get('bpmWorklistTaskId');
       this.bpmWorklistContext = params.get('bpmWorklistContext');

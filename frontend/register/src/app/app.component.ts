@@ -6,13 +6,8 @@ import { Router } from "@angular/router";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'register';
 
-  constructor(private router: Router) {
-  }
 
-  ngOnInit() {
-  this.router.navigate(['/carga']);
-  }
 }

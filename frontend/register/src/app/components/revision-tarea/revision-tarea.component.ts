@@ -38,7 +38,8 @@ export class RevisionTareaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    console.log("url: ", window.location.href);
+    
     this.activatedRoute.queryParamMap.subscribe((params) => {
       this.bpmContextId = params.get('contextId');
       this.bpmWorklistTaskId = params.get('bpmWorklistTaskId');
