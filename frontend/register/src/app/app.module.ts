@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { CargaTareaFormComponent } from './components/carga-tarea-form/carga-tarea-form.component';
 import { RevisionTareaComponent } from './components/revision-tarea/revision-tarea.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RevisionTareaComponent } from './components/revision-tarea/revision-tar
     MatInputModule,
     MatButtonModule,
     HttpClientModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

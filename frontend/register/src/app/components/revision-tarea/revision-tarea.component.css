@@ -9,9 +9,6 @@ form{
 }
 mat-form-field{
   width: 400px;
-}
-
-mat-form-field {
   margin-bottom: 20px;
 }
 
@@ -27,4 +24,11 @@ mat-form-field {
 
 .reject {
   border: solid 1px #f44336;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

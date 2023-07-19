@@ -20,6 +20,7 @@ export class RevisionTareaComponent implements OnInit {
   bpmWorklistTaskId: any;
   bpmWorklistContext: any;
   loading: boolean = false;
+
   constructor(
     formBuilder: FormBuilder,
     private taskService: TaskService,
@@ -27,12 +28,8 @@ export class RevisionTareaComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.reviewForm = formBuilder.group({
-    title: [
-      '',
-    ],
-    description: [
-      '',
-    ]
+      title: [''],
+      description: ['',]
     })
     this.reviewForm.disable();
   }
@@ -52,6 +49,7 @@ export class RevisionTareaComponent implements OnInit {
   }
 
   async getTask() {
+    this.loading = true;
     this.taskService.getTask(this.payload.taskId).subscribe({
       next: (response: any) => {
         if (!response.error) {
@@ -63,9 +61,16 @@ export class RevisionTareaComponent implements OnInit {
             title: this.task._title,
             description: this.task._description,
           });
+          this.loading = false;
         }
       },
       error: (error: string) => {
+        this.loading = false;
+        toastError
+        .fire({
+          icon: 'warning',
+          title: 'Error buscando los datos de la tarea',
+        })
         console.log('Error encontrando la tarea: ', error);
       },
     });
@@ -123,18 +128,25 @@ export class RevisionTareaComponent implements OnInit {
     )
       return console.log('Faltan datos de BPM para obtener el payload');
 
+    this.loading = true;
     this.taskService
       .getBpmPayload(this.bpmWorklistTaskId, this.bpmWorklistContext)
       .subscribe({
         next: (response: any) => {
           if (!response.error) {
             this.payload = response;
-
             console.log('payload: ', JSON.stringify(this.payload));
+            this.loading = false;
           }
         },
         error: (error: string) => {
+          this.loading = false;
           console.log('Error solicitando bpm task payload: ', error);
+          toastError
+          .fire({
+            icon: 'warning',
+            title: 'Error obteniendo el payload de BPM',
+          })
         },
       });
   }
@@ -158,18 +170,25 @@ export class RevisionTareaComponent implements OnInit {
 
   avanzarSolicitud(updatedPayload:Record<string, string>, outcome: string) {
     console.log("Entró en avanzarSolicitud");
-
+    this.loading = true;
     const body:Record<string, string> = {...updatedPayload, outcome};
 
     this.taskService.avanzarBpmProcess(this.bpmWorklistTaskId, this.bpmWorklistContext, body)
       .subscribe({
         next: (response: any) => {
+          this.loading = false;
           if (!response?.error) {
             console.log('AVANZAR SOLICITUD: OK');
           }
         },
         error: (error: string) => {
+          this.loading = false;
           console.log('Error haciendo avanzar la solicitud: ', error);
+          toastError
+          .fire({
+            icon: 'warning',
+            title: 'Error intentando avanzar la solicitud',
+          })
         },
       });
   }

@@ -16,3 +16,5 @@
     <button mat-button color="warn" class="reject" (click)="rejectTask()" *ngIf="!disabled">Rechazar</button>
   </section>
 </form>
+
+<mat-spinner *ngIf="loading" class="spinner"/>

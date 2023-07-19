@@ -57,6 +57,7 @@ export class CargaTareaFormComponent implements OnInit {
       this.taskForm.value.title,
       this.taskForm.value.description,
     );
+
     this.taskService.addTask(this.task)
       .subscribe({
         next: (response:any) => {
@@ -67,7 +68,7 @@ export class CargaTareaFormComponent implements OnInit {
               this.avanzarSolicitud(updatedPayload);
             }
             else console.log("No se pudo obtener el payload. No se puede avanzar.");
-
+            
             toastSuccess
             .fire({
               icon: 'success',
@@ -80,6 +81,7 @@ export class CargaTareaFormComponent implements OnInit {
           }
         },
         error: (error: string) => {
+          this.loading = false;
           toastError.fire({
             icon: 'error',
             title: error,
@@ -97,6 +99,7 @@ export class CargaTareaFormComponent implements OnInit {
     )
       return console.log('Faltan datos de BPM para obtener el payload');
 
+    this.loading = true;
     this.taskService
       .getBpmPayload(this.bpmWorklistTaskId, this.bpmWorklistContext)
       .subscribe({
@@ -106,9 +109,18 @@ export class CargaTareaFormComponent implements OnInit {
 
             console.log('payload: ', JSON.stringify(this.payload));
           }
+
+          this.loading = false;
         },
         error: (error: string) => {
           console.log('Error solicitando bpm task payload: ', error);
+          this.loading = false;
+          
+          toastError
+          .fire({
+            icon: 'warning',
+            title: 'No se pudo obtener el payload de BPM',
+          })
         },
       });
   }
@@ -134,18 +146,25 @@ export class CargaTareaFormComponent implements OnInit {
 
   avanzarSolicitud(updatedPayload:Record<string, string>) {
     console.log("Entró en avanzarSolicitud");
-
+    this.loading = true;
     const body:Record<string, string> = {...updatedPayload, outcome: "SUBMIT"};
 
     this.taskService.avanzarBpmProcess(this.bpmWorklistTaskId, this.bpmWorklistContext, body)
     .subscribe({
       next: (response: any) => {
+        this.loading = false;
         if (!response?.error) {
           console.log('AVANZAR SOLICITUD: OK');
         }
       },
       error: (error: string) => {
+        this.loading = false;
         console.log('Error haciendo avanzar la solicitud: ', error);
+        toastError
+        .fire({
+          icon: 'warning',
+          title: 'Error intentando avanzar la solicitud',
+        })
       },
     });
   }
